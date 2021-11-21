@@ -1,7 +1,7 @@
 /* Find Security groups that give access to ipv4 addresses */
 SELECT
     /* create arn for sg */
-    'arn:aws:ec2:' || region || ':' || account_id || ':security-group/sg-' || id AS arn
+    arn
 FROM
     aws_ec2_security_groups
     JOIN aws_ec2_security_group_ip_permissions ON aws_ec2_security_groups.cq_id = aws_ec2_security_group_ip_permissions.security_group_cq_id
@@ -19,7 +19,7 @@ WHERE
 UNION
 /* Find Security group rules that give access to ipv6 addresses */
 SELECT
-    'arn:aws:ec2:' || region || ':' || account_id || ':security-group/sg-' || id AS arn
+    arn
 FROM
     aws_ec2_security_groups
     JOIN aws_ec2_security_group_ip_permissions ON aws_ec2_security_groups.cq_id = aws_ec2_security_group_ip_permissions.security_group_cq_id
