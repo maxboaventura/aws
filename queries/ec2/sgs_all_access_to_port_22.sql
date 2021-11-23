@@ -5,7 +5,7 @@ FROM
     (
         SELECT
             /* create arn for sg */
-            'arn:aws:ec2:' || region || ':' || account_id || ':security-group/sg-' || id AS arn,
+            arn,
             /* Calculate total number of IPs a SG rule gives access to */
             (
                 split_part(host(broadcast(cidr_ip :: CIDR)), '.', 1) :: bigint * 16777216 + split_part(host(broadcast(cidr_ip :: CIDR)), '.', 2) :: bigint * 65536 + split_part(host(broadcast(cidr_ip :: CIDR)), '.', 3) :: bigint * 256 + split_part(host(broadcast(cidr_ip :: CIDR)), '.', 4) :: bigint
@@ -39,7 +39,7 @@ FROM
     (
         SELECT
             /* create arn for sg */
-            'arn:aws:ec2:' || region || ':' || account_id || ':security-group/sg-' || id AS arn,
+            arn,
             /* Calculate total number of IPs a SG rule gives access to */
             round(
                 2 ^ (
