@@ -47,12 +47,12 @@ policy "pci-dss-v3.2.1" {
     policy "codebuild" {
         query "1" {
             description = "CodeBuild GitHub or Bitbucket source repository URLs should use OAuth"
-            query = "select 1;"
+            query = file("queries/codebuild/check_oauth_usage_for_sources.sql")
         }
 
         query "2" {
             description = "CodeBuild project environment variables should not contain clear text credentials"
-            query = "select 1;"
+            query = file("queries/codebuild/check_environment_variables.sql")
         }
     }
 
