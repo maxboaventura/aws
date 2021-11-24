@@ -5,6 +5,15 @@ policy "pci-dss-v3.2.1" {
             version = ">= v0.5.0"
         }
     }
+
+
+    view "api_gateway_method_settings" {
+        description = "AWS API Gateway Method Settings"
+        query "api_gateway_method_settings_query" {
+            query = file("queries/cq_views/api_gateway_method_settings.sql")
+        }
+    }
+
     
     policy "acm" {
         description = "acm controls"
