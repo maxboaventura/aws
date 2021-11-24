@@ -1,4 +1,4 @@
-SELECT DISTINCT p.account_id, p.region, p.name
+SELECT DISTINCT p.account_id, p.region, p.arn, p.name
 FROM aws_codebuild_projects p
 JOIN aws_codebuild_project_environment_variables e ON
 p.cq_id = e.project_cq_id
