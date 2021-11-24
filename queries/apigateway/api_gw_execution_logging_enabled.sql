@@ -9,7 +9,7 @@ from (select
     web_acl_arn as waf,
     client_certificate_id as cert,
     key as method,
-    (value :: json -> 'DataTraceEnabled')::TEXT::BOOLEAN as data_trace_enabled,
+    (value::json -> 'DataTraceEnabled')::TEXT::BOOLEAN as data_trace_enabled,
     (value::json ->'CachingEnabled')::TEXT::BOOLEAN as caching_enabled,
     (value::json -> 'CacheDataEncrypted')::TEXT::BOOLEAN as cache_data_encrypted,
     (value::json -> 'LoggingLevel')::TEXT as logging_level
@@ -21,9 +21,9 @@ from
 order by cq_id, stage_name, method) as t
 
 union
-
-
-
-
-
-select api_cq_id from aws_apigatewayv2_api_stages where route_settings_logging_level in (NULL, 'OFF')
+select
+    api_cq_id
+from
+    aws_apigatewayv2_api_stages
+where
+    route_settings_logging_level in (NULL, 'OFF')
