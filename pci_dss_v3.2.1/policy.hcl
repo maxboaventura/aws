@@ -47,7 +47,7 @@ policy "pci-dss-v3.2.1" {
     policy "codebuild" {
         query "1" {
             description = "CodeBuild GitHub or Bitbucket source repository URLs should use OAuth"
-            query = "SELECT account_id, region, name FROM aws_codebuild_projects WHERE (source_type = 'GITHUB' OR source_type = 'BITBUCKET') AND source_auth_type != 'OAUTH';"
+            query = file("queries/codebuild/check_oauth_usage_for_sources.sql")
         }
 
         query "2" {
