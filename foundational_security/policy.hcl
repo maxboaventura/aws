@@ -5,6 +5,15 @@ policy "pci-dss-v3.2.1" {
             version = ">= v0.5.0"
         }
     }
+
+
+    view "api_gateway_method_settings" {
+        description = "AWS API Gateway Method Settings"
+        query "api_gateway_method_settings_query" {
+            query = file("queries/cq_views/api_gateway_method_settings.sql")
+        }
+    }
+
     
     policy "acm" {
         description = "acm controls"
@@ -18,27 +27,27 @@ policy "pci-dss-v3.2.1" {
         description = "apigateway controls"
         query "1" {
             description = "API Gateway REST and WebSocket API logging should be enabled"
-            query = "select 1;"
+            query = file("queries/apigateway/api_gw_execution_logging_enabled.sql")
         }
 
         query "2" {
             description = "API Gateway REST API stages should be configured to use SSL certificates for backend authentication"
-            query = "select 1;"
+            query = file("queries/apigateway/api_gw_ssl_enabled.sql")
         }
 
         query "3" {
             description = "API Gateway REST API stages should have AWS X-Ray tracing enabled"
-            query = "select 1;"
+            query = file("queries/apigateway/api_gw_xray_enabled.sql")
         }
 
         query "4" {
             description = "API Gateway should be associated with an AWS WAF web ACL"
-            query = "select 1;"
+            query = file("queries/apigateway/api_gw_associated_with_waf.sql")
         }
 
         query "5" {
             description = "API Gateway REST API cache data should be encrypted at rest"
-            query = "select 1;"
+            query = file("queries/apigateway/api_gw_cache_encrypted.sql")
         }
     }
 
