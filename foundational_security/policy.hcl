@@ -87,22 +87,22 @@ policy "pci-dss-v3.2.1" {
         description = "cloudtrail controls"
         query "1" {
             description = "CloudTrail should be enabled and configured with at least one multi-Region trail and not have management events excluded"
-            query = "select 1;"
+            query = file("queries/cloudtrail/enabled_in_all_regions.sql")
         }
 
         query "2" {
             description = "CloudTrail should have encryption at rest enabled"
-            query = "select 1;"
+            query = file("queries/cloudtrail/logs_encrypted.sql")
         }
 
         query "4" {
             description = "Ensure CloudTrail log file validation is enabled"
-            query = "select 1;"
+            query = file("queries/cloudtrail/log_file_validation_enabled.sql")
         }
 
         query "5" {
             description = "Ensure CloudTrail trails are integrated with Amazon CloudWatch Logs"
-            query = "select 1;"
+            query = file("queries/cloudtrail/integrated_with_cloudwatch_logs.sql")
         }
     }
 
