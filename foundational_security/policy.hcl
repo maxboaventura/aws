@@ -11,7 +11,8 @@ policy "foundational_security" {
         query "api_gateway_method_settings_query" {
             query = file("queries/cq_views/api_gateway_method_settings.sql")
         }
-    }    
+    }
+
     policy "acm" {
         description = "acm controls"
         query "1" {
@@ -648,10 +649,10 @@ policy "foundational_security" {
     }
 
     policy "sagemaker" {
-        description = "SageMaker controls"
+        description = "SageMaker"
         query "1" {
-            description = "S3 Block Public Access setting should be enabled"
-            query = "select 1;"
+            description = "Amazon SageMaker notebook instances should not have direct internet access"
+            query = file("queries/sagemaker/sagemaker_notebook_instance_direct_internet_access_disabled.sql")
         }
     }
 
@@ -676,10 +677,10 @@ policy "foundational_security" {
     }
 
     policy "sns" {
-        description = "SNS controls"
+        description = "SNS"
         query "1" {
             description = "SNS topics should be encrypted at rest using AWS KMS"
-            query = "select 1;"
+            query = file("queries/sns/sns_topics_should_be_encrypted_at_rest_using_aws_kms.sql")
         }
     }
 
