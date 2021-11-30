@@ -1,8 +1,8 @@
-policy "pci-dss-v3.2.1" {
-    description = "PCI DSS V3.2.1"
+policy "foundational_security" {
+    description = "AWS Foundational Security Best Practices controls"
     configuration {
         provider "aws" {
-            version = ">= v0.5.0"
+            version = ">= v0.7.0"
         }
     }
 
@@ -51,8 +51,7 @@ policy "pci-dss-v3.2.1" {
     policy "autoscaling" {
         description = "autoscaling controls"
         query "1" {
-            /* query = file("queries/autoscaling/autoscaling_groups_elb_check.sql") */
-            query = "select 1;"
+            query = file("queries/autoscaling/autoscaling_groups_elb_check.sql")
         }
     }
 
@@ -639,12 +638,12 @@ policy "pci-dss-v3.2.1" {
 
         query "6" {
             description = "Amazon S3 permissions granted to other AWS accounts in bucket policies should be restricted"
-            query = "select 1;"
+            query = file("queries/s3/restrict_cross_account_actions.sql")
         }
 
         query "8" {
-            description = "Amazon S3 permissions granted to other AWS accounts in bucket policies should be restricted"
-            query = "select 1;"
+            description = "S3 Block Public Access setting should be enabled at the bucket level"
+            query = file("queries/s3/account_level_public_access_blocks.sql")
         }
     }
 
