@@ -237,12 +237,12 @@ policy "foundational_security" {
         description = "ECS controls"
         query "1" {
             description = "Amazon ECS task definitions should have secure networking modes and user definitions"
-            query = "select 1;"
+            query = file("queries/ecs/task_definitions_secure_networking.sql")
         }
 
         query "2" {
             description = "Amazon ECS services should not have public IP addresses assigned to them automatically"
-            query = "select 1;"
+            query = file("queries/ecs/ecs_services_with_public_ips.sql")
         }
     }
 
