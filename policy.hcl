@@ -11,4 +11,8 @@ policy "aws" {
     source      = file("cis_v1.2.0/policy.hcl")
   }
 
+  policy "pci_dss_v3.2.1" {
+    description = "AWS PCI DSS V3.2.1 Policy"
+    source      = file("pci_dss_v3.2.1/policy.hcl")
+  }
 }
