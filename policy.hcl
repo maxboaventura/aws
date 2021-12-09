@@ -6,7 +6,7 @@ policy "aws" {
     }
   }
 
-  policy "cis-v1.2.0" {
+  policy "cis_v1.2.0" {
     description = "AWS CIS V1.2.0 Policy"
     source      = file("cis_v1.2.0/policy.hcl")
   }
