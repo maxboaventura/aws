@@ -161,24 +161,32 @@ policy "foundational_security" {
 
   policy "ec2" {
     description = "EC2 controls"
+
+    view "aws_security_group_ingress_rules" {
+      description = "Aggregates rules of security groups with ports and IPs including ipv6"
+      query "aws_security_group_ingress_rules" {
+        query = file("queries/ec2/aws_security_group_ingress_rules.sql")
+      }
+    }
+
     query "1" {
       description = "Amazon EBS snapshots should not be public, determined by the ability to be restorable by anyone"
-      query       = "select 1;"
+      query       = file("queries/ec2/ebs_snapshot_permissions_check.sql")
     }
 
     query "2" {
       description = "The VPC default security group should not allow inbound and outbound traffic"
-      query       = "select 1;"
+      query       = file("queries/ec2/default_sg_no_access.sql")
     }
 
     query "3" {
       description = "Attached EBS volumes should be encrypted at rest"
-      query       = "select 1;"
+      query       = file("queries/ec2/unencypted_ebs_volumes.sql")
     }
 
     query "4" {
       description = "Stopped EC2 instances should be removed after a specified time period"
-      query       = "select 1;"
+      query       = file("queries/ec2/stopped_more_thant_30_days_ago_instances.sql")
     }
 
 
@@ -189,47 +197,47 @@ policy "foundational_security" {
 
     query "7" {
       description = "EBS default encryption should be enabled"
-      query       = "select 1;"
+      query       = file("queries/ec2/ebs_encryption_by_default_disabled.sql")
     }
 
     query "8" {
       description = "EC2 instances should use IMDSv2"
-      query       = "select 1;"
+      query       = file("queries/ec2/not_idsmv2_instances.sql")
     }
 
     query "9" {
       description = "EC2 instances should not have a public IP address"
-      query       = "select 1;"
+      query       = file("queries/ec2/instances_with_public_ip.sql")
     }
 
     query "10" {
       description = "Amazon EC2 should be configured to use VPC endpoints that are created for the Amazon EC2 service"
-      query       = "select 1;"
+      query       = file("queries/ec2/vpcs_without_ec2_endpoint.sql")
     }
 
     query "15" {
       description = "EC2 subnets should not automatically assign public IP addresses"
-      query       = "select 1;"
+      query       = file("queries/ec2/subnets_that_assign_public_ips.sql")
     }
 
     query "16" {
       description = "Unused network access control lists should be removed"
-      query       = "select 1;"
+      query       = file("queries/ec2/unused_acls.sql")
     }
 
     query "17" {
       description = "EC2 instances should not use multiple ENIs"
-      query       = "select 1;"
+      query       = file("queries/ec2/instances_with_more_than_2_network_interfaces.sql")
     }
 
     query "18" {
       description = "Security groups should only allow unrestricted incoming traffic for authorized ports"
-      query       = "select 1;"
+      query       = file("queries/ec2/security_groups_with_access_to_unauthorized_ports.sql")
     }
 
     query "19" {
       description = "Security groups should not allow unrestricted access to ports with high risk"
-      query       = "select 1;"
+      query       = file("queries/ec2/security_groups_with_open_critical_ports.sql")
     }
   }
 
