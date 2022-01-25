@@ -23,7 +23,7 @@ FROM
                     JSONB_TYPEOF(
                         statements -> 'Principal' -> 'AWS'
                     ) = 'array' THEN statements -> 'Principal' -> 'AWS'
-            END AS principals,
+           END AS principals,
             -- For each Statement return an array containing the Actions
             CASE
                 WHEN
@@ -34,7 +34,7 @@ FROM
                     JSONB_TYPEOF(
                         statements -> 'Action'
                     ) = 'array' THEN statements -> 'Action'
-            END AS actions
+           END AS actions
         FROM aws_s3_buckets,
             JSONB_ARRAY_ELEMENTS(policy -> 'Statement') AS statements
         WHERE statements -> 'Effect' = '"Allow"' ) AS flatten_statements,
