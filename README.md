@@ -18,6 +18,9 @@ CloudQuery extracts, transforms, and loads your cloud assets into normalized Pos
 
 - CIS v1.2.0
 - PCI DSS v.3.2.1
+- Foundational Security
+- Public Egress
+- Publicly Available 
 
 ## Quick Start
 
@@ -62,5 +65,5 @@ cloudquery policy run aws//cis_v1.2.0
 cloudquery policy run aws//pci_dss_v3.2.1
 
 # Run specific check
-cloudquery policy run aws//cis_v1.2.0/1/1
+cloudquery policy run aws//cis_v1.2.0/1/1.1
 ```
