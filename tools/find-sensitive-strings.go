@@ -72,7 +72,8 @@ func main() {
 	}
 
 	if len(allMatches) > 0 {
-		log.Panicln("Found sensitive materials")
+		log.Println("Found sensitive materials")
+		os.Exit(1)
 	}
 
 }
