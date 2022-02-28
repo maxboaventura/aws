@@ -70,7 +70,7 @@ func main() {
 	for _, match := range allMatches {
 		fmt.Println(match)
 	}
-	return
+
 	if len(allMatches) > 0 {
 		log.Panicln("Found sensitive materials")
 	}
