@@ -56,7 +56,7 @@ func checkFile(filePath string) ([]string, error) {
 }
 
 func main() {
-	files, err := walkTestDir("../../dest")
+	files, err := walkTestDir("./dest")
 	if err != nil {
 		log.Println(err)
 		return
@@ -70,10 +70,9 @@ func main() {
 	for _, match := range allMatches {
 		fmt.Println(match)
 	}
-
+	return
 	if len(allMatches) > 0 {
-		log.Println("Found sensitive materials")
-
+		log.Panicln("Found sensitive materials")
 	}
-	os.Exit(-1)
+
 }
