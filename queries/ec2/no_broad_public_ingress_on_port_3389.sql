@@ -12,6 +12,6 @@ SELECT account_id,
 FROM aws_security_group_ingress_rules
 WHERE (ip = '0.0.0.0/0' OR ip = '::/0')
     AND (
-       (from_port IS NULL AND to_port IS NULL) -- all prots
+       (from_port IS NULL AND to_port IS NULL) -- all ports
        OR 3389 BETWEEN from_port AND to_port
     )
