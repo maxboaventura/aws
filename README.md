@@ -1,3 +1,7 @@
+------------
+This moved to https://github.com/cloudquery/cq-provider-aws/tree/main/policies
+------------
+
 # AWS Security & Compliance CloudQuery policy pack
 
 Official AWS security & compliance policy pack for CloudQuery.
